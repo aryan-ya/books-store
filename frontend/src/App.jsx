@@ -1,6 +1,6 @@
 import React from 'react'
 import Home from './home/Home'
-import Course from './components/Course'
+import Courses from './courses/courses'
 import {Route , Routes} from "react-router-dom";
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
 
     <Routes>
       <Route path="/" element = {<Home />}></Route>
-      <Route path="/course" element = {<Course />}></Route>
+      <Route path="/course" element = {<Courses />}></Route>
     </Routes>
     </>
   )

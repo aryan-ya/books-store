@@ -22,10 +22,10 @@ function Navbar() {
 const navItems = (
     <>
     <li>
-        <a href="">Home</a>
+        <a href="/">Home</a>
     </li>
     <li>
-        <a href="">Course </a>
+        <a href="/course">Course </a>
     </li>
     <li>
         <a href="">Contact</a>

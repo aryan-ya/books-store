@@ -3,7 +3,7 @@ import React from 'react'
 
 import list from  "../../public/list.json"
 import Cards from './Cards'
-
+import {Link} from  "react-router-dom"
 function Course() {
   return (
     <>
@@ -14,8 +14,11 @@ function Course() {
       </h1>
       <p className='mt-12'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam voluptate voluptatibus quidem quo laborum architecto doloribus veritatis natus nostrum nulla? Reiciendis molestiae fugiat corporis neque sed obcaecati a alias in distinctio necessitatibus, illo quos esse magnam rem nesciunt! Laborum fugit doloribus esse nesciunt! Corrupti dolorem eligendi nam saepe impedit voluptate temporibus.</p>
 
-      <button className='mt-6 bg-pink-400 text-white px-4 py-2 rounded-md hover:bg-pink-700 duration-300'>Back</button>
-      </div>
+ <Link to={"/"}>
+ 
+ <button className='mt-6 bg-pink-400 text-white px-4 py-2 rounded-md hover:bg-pink-700 duration-300'>Back</button>
+
+ </Link>      </div>
 
       <div className='mt-12 grid grid-cols-1 md:grid-cols-4'>
 

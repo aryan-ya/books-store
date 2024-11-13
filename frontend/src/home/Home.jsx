@@ -8,8 +8,9 @@ function home() {
     <>
      <Navbar />
      <Banner/>
-     <Footer />
+   
      <Freebook />
+     <Footer />
      </>
   )
 }

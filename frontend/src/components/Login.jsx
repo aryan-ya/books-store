@@ -12,7 +12,7 @@ function Login() {
       {/* if there is a button in form, it will close the modal */}
       <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
     </form>
-    <h3 className="font-bold text-lg">login</h3>
+    <h3 className="font-bold text-lg text-black">login</h3>
       <div className='mt-4 space-y-2'>
         <span className='text-black'>Email</span>
         <br/>

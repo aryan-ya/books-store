@@ -1,8 +1,10 @@
-const express = require("express");
-const dotenv =require("dotenv");
+import express from "express"
+import dotenv from "dotenv";
+import cors from "cors";
 import mongoose from "mongoose";
-const app = express()
-
+import bookRoute from "./route/book.route.js";
+const app = express();
+app.use(cors());
 
 dotenv.config();
  
@@ -22,6 +24,10 @@ try {
     console.log( "error" ,error);
     
 }
+
+//defining routes
+
+app.use("/book", bookRoute)
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`)

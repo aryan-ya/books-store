@@ -1,15 +1,37 @@
-import React from 'react'
-import list from "../../public/list.json"
+import React, { useEffect, useState } from "react";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import Cards from './Cards';
 
+import axios from "axios";
+
+import Cards from "./Cards";
 function Freebook() {
-
-  const filtered = list.filter((data) => data.category === 'free');
-  console.log(filtered); // Log filtered data to the console
-
+  const [book, setBook] = useState([]);
+ 
+  useEffect(() => {
+    const getBook = async () => {
+      try {
+        const res = await axios.get("http://localhost:4001/book");
+        console.log("Raw API Response:", res.data); // Log the raw data
+        if (res.data && Array.isArray(res.data)) {
+          const filteredBooks = res.data.filter((data) =>
+            data.category?.toLowerCase() === "free"
+          );
+          console.log("Filtered Books:", filteredBooks); // Log the filtered array
+          setBook(filteredBooks);
+        } else {
+          console.error("Unexpected data format:", res.data);
+        }
+      } catch (error) {
+        console.error("Failed to fetch books:", error.message);
+      }
+    };
+  
+    getBook();
+  }, []);
+  
   var settings = {
     dots: true,
     infinite: false,
@@ -24,43 +46,47 @@ function Freebook() {
           slidesToShow: 3,
           slidesToScroll: 3,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          initialSlide: 2
-        }
+          initialSlide: 2,
+        },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
-
   return (
-    <div className='max-w-screen-xl container mx-auto md-px-20 px-4'>
-      <div>
-        <h1 className='font-semibold text-xl pb-2'>Free Offered Course </h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure tempore, quis deserunt sint atque autem impedit est. Excepturi, aut laborum! Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-      </div>
+    <>
+      <div className=" max-w-screen-2xl container mx-auto md:px-20 px-4">
+        <div>
+          <h1 className="font-semibold text-xl pb-2">Free Offered Courses</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Accusantium veritatis alias pariatur ad dolor repudiandae eligendi
+            corporis nulla non suscipit, iure neque earum?
+          </p>
+        </div>
 
-      <div>
-        <Slider {...settings}>
-          {filtered.map((item) => (
-            <Cards item={item} key={item.id} />
-          ))}
-        </Slider>
+        <div>
+          <Slider {...settings}>
+            {book.map((item) => (
+              <Cards item={item} key={item.id} />
+            ))}
+          </Slider>
+        </div>
       </div>
-    </div>
-  )
+    </>
+  );
 }
-
 export default Freebook;

@@ -23,17 +23,21 @@ function Login() {
     .then((res)=>{
       console.log(res.data);
       if (res.data) {
-     
-        toast.success("LoggedIn Successful");
-
+        toast.success("Loggedin Successfully");
+        document.getElementById("my_modal_3").close();
+        setTimeout(() => {
+          window.location.reload();
+          localStorage.setItem("Users", JSON.stringify(res.data.user));
+        }, 1000)
       }
-      localStorage.setItem("Users", JSON.stringify(res.data.user));
+   
     }).catch((err) =>{
     if (err.response) {
       console.log(err);
       
     
-      toast.error("Error: "+ err.response.data.message)
+      toast.error("Error: "+ err.response.data.message);
+      setTimeout(() =>{}, 3000)
     }
        
     })
@@ -93,20 +97,21 @@ function Login() {
           </div>
 
           {/* Button */}
-          <div className="flex justify-around mt-6">
-            <button className="bg-pink-500 text-white rounded-md px-3 py-1 hover:bg-pink-700 duration-200">
-              Login
-            </button>
-            <p>
-              Not registered?{" "}
-              <Link
-                to="/signup"
-                className="underline text-blue-500 cursor-pointer"
-              >
-                Signup
-              </Link>{" "}
-            </p>
-          </div>
+             {/* Button */}
+             <div className="flex justify-around mt-6">
+              <button className="bg-pink-500 text-white rounded-md px-3 py-1 hover:bg-pink-700 duration-200">
+                Login
+              </button>
+              <p>
+                Not registered?{" "}
+                <Link
+                  to="/signup"
+                  className="underline text-blue-500 cursor-pointer"
+                >
+                  Signup
+                </Link>{" "}
+              </p>
+            </div>
         </form>
       </div>
     </dialog>
